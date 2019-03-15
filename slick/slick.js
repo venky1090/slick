@@ -193,7 +193,7 @@
 
         _.$slideTrack.find('.slick-active').attr({
             'aria-hidden': 'false'
-        }).find('a, input, button, select').attr({
+        }).find('a, input, button, select, [tabindex="-1"]').attr({
             'tabindex': '0'
         });
 
@@ -1333,7 +1333,7 @@
         _.$slides.add(_.$slideTrack.find('.slick-cloned')).attr({
             'aria-hidden': 'true',
             'tabindex': '-1'
-        }).find('a, input, button, select').attr({
+        }).find('a, input, button, select, [tabindex="0"]').attr({
             'tabindex': '-1'
         });
 
@@ -1520,7 +1520,7 @@
 
         var _ = this;
          //Dont slide if the cursor is inside the form fields and arrow keys are pressed
-        if(!event.target.tagName.match('TEXTAREA|INPUT|SELECT')) {
+        if(!(event.target.tagName.match('TEXTAREA|INPUT|SELECT') || event.target.closest('fc-highcharts'))) {
             if (event.keyCode === 37 && _.options.accessibility === true) {
                 _.changeSlide({
                     data: {
